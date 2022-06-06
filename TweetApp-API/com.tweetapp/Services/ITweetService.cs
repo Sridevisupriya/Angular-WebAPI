@@ -14,6 +14,8 @@ namespace com.tweetapp.Services
         public Task<IEnumerable<Tweets>> GetUsersTweet(string userId);
 
         public Task<bool> Reply(string tweetId, string tweetText, string userId);
+        public Task<bool> InactivateReply(string userId);
+        public Task<int> ActiveRepliesCount(string userId);
 
         public Task<bool> DeleteTweet(string tweetId);
 

@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { waitForAsync } from "@angular/core/testing";
 import { Subject } from "rxjs";
 import { Reply } from "./reply.model";
 import { Tweet } from "./tweet.model";
@@ -13,7 +14,7 @@ export class TweetService{
 
     tweetChanged = new Subject<Tweet>();
     allTweets = new Subject<Tweet[]>();
-
+    count : number;
     private tweets: Tweet[];
     
     getAllTweets(){
@@ -80,4 +81,18 @@ export class TweetService{
             this.getTweetByUserId(userId);
         });
     }
+
+    inActivateReply( userId: string){
+        this.http.put('http://localhost:48897/api/v1.0/tweets/inactivateReply/'+ userId , null).subscribe((response) => {
+            this.getAllTweets();
+        });
+    }
+
+    getActiveReplies( userId: string){      
+      this.http.get<number>('http://localhost:48897/api/v1.0/tweets/activeReplies/'+userId).subscribe((response) =>{
+            this.count = response;            
+        });
+        return this.count;
+    }
+
 }

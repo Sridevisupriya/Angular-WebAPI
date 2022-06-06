@@ -12,6 +12,7 @@ import { ReplyTweetComponent } from './tweet/reply-tweet/reply-tweet.component';
 import { TweetComponent } from './tweet/tweet.component';
 import { UserComponent } from './user/user.component';
 import { SearchUserComponent } from './user/search-user/search-user.component';
+import { NotifyUserComponent } from './user/notify-user/notify-user.component';
 import { UpdateProfileComponent } from './profile/updateProfile/update-profile.component';
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path: 'my-profile/:id', component: ProfileComponent},
     {path: 'tweets', component: TweetComponent},
     {path: 'my-profile/update-profile/:id',component: UpdateProfileComponent},
+    {path: 'users/notify-user/:id',component: NotifyUserComponent},
     {path:'users/search-user/:id' , component:SearchUserComponent},
     {path: '', redirectTo: 'tweets',pathMatch: 'full'},
   ], canActivate:[AuthGuard]},

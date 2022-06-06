@@ -24,6 +24,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UpdateProfileComponent } from './profile/updateProfile/update-profile.component';
 import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
 import { ErrorComponent } from './error/error.component';
+import { NotifyUserComponent } from './user/notify-user/notify-user.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ErrorComponent } from './error/error.component';
     ErrorComponent,
     UpdateProfileComponent,
     SearchUserComponent,
+    NotifyUserComponent,
   ],
   imports: [
     BrowserModule,

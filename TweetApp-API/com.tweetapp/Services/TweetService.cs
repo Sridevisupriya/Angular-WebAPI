@@ -144,5 +144,29 @@ namespace com.tweetapp.Services
                 return -1;
             }
         }
+
+        public async Task<bool> InactivateReply(string userId)
+        {
+            try
+            {
+                return await _tweet.InactivateReply(userId);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<int> ActiveRepliesCount(string userId)
+        {
+            try
+            {
+                return await _tweet.ActiveRepliesCount(userId);
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
     }
 }

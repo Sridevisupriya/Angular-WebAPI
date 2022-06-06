@@ -129,5 +129,37 @@ namespace com.tweetapp.Controllers
             }
             return StatusCode(500, new { errorMessage = "Internal Server Error!" });
         }
+
+        /// <summary>
+        /// Inactivate Reply
+        /// </summary>        
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpPut("inactivateReply/{userId}")]
+        public async Task<IActionResult> InActivateReply( string userId)
+        {
+            var response = await _tweetService.InactivateReply(userId);
+            if (response)
+            {
+                return Ok(response);
+            }
+            return StatusCode(500, new { errorMessage = "Internal Server Error!" });
+        }
+
+        /// <summary>
+        /// Active Replies Count
+        /// </summary>        
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("activeReplies/{userId}")]
+        public async Task<int> GetActiveRepliesCount(string userId)
+        {
+            var response = await _tweetService.ActiveRepliesCount(userId);
+            if (response>=0)
+            {
+                return response;
+            }
+            return -1;
+        }
     }
 }

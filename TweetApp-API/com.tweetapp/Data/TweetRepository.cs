@@ -36,6 +36,7 @@ namespace com.tweetapp.Data
 
         public async Task<bool> Reply(string tweetId, ReplyTweets reply)
         {
+            reply.Notification = true;
             var pushElement = Builders<Tweets>.Update.Push(t => t.Replies, reply); 
             var result = await _tweets.UpdateOneAsync(s => s.Id == tweetId, pushElement);
             return result.ModifiedCount > 0;
@@ -84,6 +85,40 @@ namespace com.tweetapp.Data
                 await _tweets.UpdateOneAsync(s => s.Id == tweetId, pushElement);
             }
             return likes;
+        }
+
+        public async Task<bool> InactivateReply(string userId)
+        {
+            
+            var tweets = await _tweets.Find(tweet => tweet.UserId==userId).ToListAsync();
+            foreach(Tweets tweet in tweets)
+            {
+                foreach(ReplyTweets replyTweets in tweet.Replies)
+                {
+                    replyTweets.Notification = false;
+                   
+                }
+                var pushElement = Builders<Tweets>.Update.Set(x => x.Replies, tweet.Replies);
+                await _tweets.UpdateOneAsync(s => s.Id == tweet.Id, pushElement);
+
+            }
+            return true;
+        }
+
+        public async Task<int> ActiveRepliesCount(string userId)
+        {
+            int count = 0;
+            var tweets = await _tweets.Find(tweet => tweet.UserId == userId).ToListAsync();
+            foreach (Tweets tweet in tweets)
+            {
+                foreach (ReplyTweets replyTweets in tweet.Replies)
+                {
+                    if (replyTweets.Notification == true)
+                        count++;
+
+                }                
+            }
+            return count;
         }
     }
 }

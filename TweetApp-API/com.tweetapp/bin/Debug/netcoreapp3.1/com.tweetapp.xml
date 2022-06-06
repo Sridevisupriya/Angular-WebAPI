@@ -64,6 +64,20 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
+        <member name="M:com.tweetapp.Controllers.TweetController.InActivateReply(System.String)">
+            <summary>
+            Inactivate Reply
+            </summary>        
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.tweetapp.Controllers.TweetController.GetActiveRepliesCount(System.String)">
+            <summary>
+            Active Replies Count
+            </summary>        
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
         <member name="M:com.tweetapp.Controllers.UserController.Login(com.tweetapp.Models.UserCredentials)">
             <summary>
             Login

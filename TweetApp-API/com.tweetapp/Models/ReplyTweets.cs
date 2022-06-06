@@ -24,5 +24,10 @@ namespace com.tweetapp.Models
 
         [BsonElement("lastName")]
         public string LastName { get; set; }
+
+
+        [BsonElement("notification")]
+        public bool Notification { get; set; }
+
     }
 }

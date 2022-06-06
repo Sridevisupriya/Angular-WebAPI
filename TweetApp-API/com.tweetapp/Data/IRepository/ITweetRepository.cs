@@ -13,6 +13,8 @@ namespace com.tweetapp.Data.IRepository
         public Task<IEnumerable<Tweets>> GetUsersTweet(string userId);
 
         public Task<bool> Reply(string tweetId, ReplyTweets reply);
+        public Task<bool> InactivateReply(string userId);
+        public Task<int> ActiveRepliesCount(string userId);
 
         public Task<bool> DeleteTweet(string tweetId);
 

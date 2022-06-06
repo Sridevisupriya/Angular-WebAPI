@@ -44,3 +44,17 @@
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  .circle {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    background: red;
+    border: 1.5px solid #000;
+    color: black;
+    text-align: center;
+    font:12px Arial, sans-serif;
+    font-weight: bold;
+    vertical-align: top;
+  }
