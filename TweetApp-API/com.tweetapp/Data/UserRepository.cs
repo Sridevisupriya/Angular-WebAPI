@@ -70,6 +70,15 @@ namespace com.tweetapp.Data
             result.DateOfBirth = userDetails.DateOfBirth;
             result.Gender = userDetails.Gender;
             var updatedResult = await _users.ReplaceOneAsync(x => x.EmailId == userId, result);
+            var tweets = await _tweets.Find(tweet => tweet.UserId == userId).ToListAsync();
+            foreach (Tweets tweet in tweets)
+            {
+                tweet.FirstName = userDetails.FirstName;
+                tweet.LastName = userDetails.LastName;
+                //var pushElement = Builders<Tweets>.Update.Set(x => x,tweet );
+                await _tweets.ReplaceOneAsync(s => s.Id == tweet.Id,tweet);
+
+            }
             result = await _users.Find(s => s.EmailId == userId).FirstOrDefaultAsync();
             return true;
 

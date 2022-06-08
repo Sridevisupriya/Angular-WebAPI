@@ -152,14 +152,14 @@ namespace com.tweetapp.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet("activeReplies/{userId}")]
-        public async Task<int> GetActiveRepliesCount(string userId)
+        public async Task<IActionResult> GetActiveRepliesCount(string userId)
         {
             var response = await _tweetService.ActiveRepliesCount(userId);
             if (response>=0)
             {
-                return response;
+                return Ok(response.ToString());
             }
-            return -1;
+            return StatusCode(404, new { error = "invalid response" });
         }
     }
 }

@@ -23,22 +23,33 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute ,private tweetService : TweetService) { }
   user : ViewUser | null;
   userId: string | null;
-  count = 0;
+  count : string | null = "0";
   authSubscription : Subscription;
   tweetSubscription : Subscription;
+  isLoaded : boolean = false;
   ngOnInit(): void {
+   
     this.authSubscription = this.authService.userDetail.subscribe((user) => {
       this.user = user;
     })  
+    
     this.userId = localStorage.getItem('user');
-    if(this.userId!=null)
-    {
-      this.count = this.tweetService.getActiveReplies(this.userId);
-    }     
+    
   }
 
+ getCount()
+ {
+  this.userId = localStorage.getItem('user') as string;
+  if(this.userId!=null)
+  {      
+      this.tweetService.getActiveReplies(this.userId);
+  }
+  this.count = localStorage.getItem('count');
+  return this.count;
+ }
+
   onSelect(value: string){
-    this.authService.selectedValue.emit(value);
+    this.authService.selectedValue.emit(value);    
   } 
 
   onLogout(){

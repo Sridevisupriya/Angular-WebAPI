@@ -35,6 +35,7 @@ export class NotifyUserComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.tweetService.inActivateReply(this.userId);
+    window.location.reload();
   }
 
  
